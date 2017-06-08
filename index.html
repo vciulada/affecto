@@ -106,11 +106,13 @@
       </div>
 
       <script>
-         var timestamp = Date.getTime();
+         var d = new Date();
+         var timestamp = d.getTime();
          if (!window.DeviceOrientationEvent) {
              document.getElementById('do-unsupported').classList.remove('hidden');
          } else {
-             document.getElementById('time-gap').innerHTML = Date.getTime() - timestamp;
+             var dt = new Date();
+             document.getElementById('time-gap').innerHTML = dt.getTime() - timestamp;
              document.getElementById('do-info').classList.remove('hidden');
              window.addEventListener('deviceorientation', function(event) {
                var http = new XMLHttpRequest();
