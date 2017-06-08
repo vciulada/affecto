@@ -105,7 +105,7 @@
       </div>
 
       <script>
-      document.getElementById('do-info').classList.remove('hidden');
+      /*document.getElementById('do-info').classList.remove('hidden');
       var http = new XMLHttpRequest();
                var url = "/policy/";
                var policy = {};
@@ -127,8 +127,8 @@
 
                  }
                }
-                http.send(params);
-         /*if (!window.DeviceOrientationEvent) {
+                http.send(params);*/
+         if (!window.DeviceOrientationEvent) {
              document.getElementById('do-unsupported').classList.remove('hidden');
          } else {
              document.getElementById('do-info').classList.remove('hidden');
@@ -151,7 +151,7 @@
                var params = JSON.stringify(policy)
                http.send(params);
             });
-         }*/
+         }
       </script>
    </body>
 </html>
