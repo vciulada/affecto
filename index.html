@@ -110,7 +110,7 @@
          if (!window.DeviceOrientationEvent) {
              document.getElementById('do-unsupported').classList.remove('hidden');
          } else {
-             document.getElementById('do-info').innerHTML = Date.getTime() - timestamp;
+             document.getElementById('time-gap').innerHTML = Date.getTime() - timestamp;
              document.getElementById('do-info').classList.remove('hidden');
              window.addEventListener('deviceorientation', function(event) {
                var http = new XMLHttpRequest();
