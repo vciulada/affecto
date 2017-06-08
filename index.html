@@ -106,8 +106,6 @@
       </div>
 
       <script>
-      navigator.wakeLock.request("display").then(
-        function successFunction() {
          var d = new Date();
          var timestamp = d.getTime();
          if (!window.DeviceOrientationEvent) {
@@ -141,10 +139,6 @@
                }
             });
          }
-        },
-        function errorFunction() {
-            alert("not possible to lock the screen");
-        });
       </script>
    </body>
 </html>
