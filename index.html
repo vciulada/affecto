@@ -128,33 +128,7 @@
                Position absolute? <span id="is-absolute" class="value">unavailable</span>
             </p>
          </div>
-         <div id="dm-info">
-            <p>
-               Acceleration:
-               (<span id="acceleration-x" class="value">null</span>,
-               <span id="acceleration-y" class="value">null</span>,
-               <span id="acceleration-z" class="value">null</span>)
-               m/s<sup>2</sup>
-            </p>
-            <p>
-               Acceleration including gravity:
-               (<span id="acceleration-including-gravity-x" class="value">null</span>,
-               <span id="acceleration-including-gravity-y" class="value">null</span>,
-               <span id="acceleration-including-gravity-z" class="value">null</span>)
-               m/s<sup>2</sup>
-            </p>
-            <p>
-               Rotation rate:
-               (<span id="rotation-rate-beta" class="value">null</span>,
-               <span id="rotation-rate-gamma" class="value">null</span>,
-               <span id="rotation-rate-alpha" class="value">null</span>)
-            </p>
-            <p>
-               Interval: <span id="interval" class="value">0</span> milliseconds
-            </p>
-         </div>
-      </div>
-
+      </div>   
       <small class="author">
          Demo created by <a href="http://www.audero.it">Aurelio De Rosa</a>
          (<a href="https://twitter.com/AurelioDeRosa">@AurelioDeRosa</a>)
@@ -177,39 +151,6 @@
                document.getElementById('gamma').innerHTML = Math.round(event.gamma);
                document.getElementById('alpha').innerHTML = Math.round(event.alpha);
                document.getElementById('is-absolute').innerHTML = event.absolute ? "true" : "false";
-            });
-         }
-
-         if (!window.DeviceMotionEvent) {
-            document.getElementById('dm-unsupported').classList.remove('hidden');
-         } else {
-            document.getElementById('dm-info').classList.remove('hidden');
-
-            window.addEventListener('devicemotion', function(event) {
-               document.getElementById('acceleration-x').innerHTML = Math.round(event.acceleration.x);
-               document.getElementById('acceleration-y').innerHTML = Math.round(event.acceleration.y);
-               document.getElementById('acceleration-z').innerHTML = Math.round(event.acceleration.z);
-
-               document.getElementById('acceleration-including-gravity-x').innerHTML =
-                       Math.round(event.accelerationIncludingGravity.x);
-               document.getElementById('acceleration-including-gravity-y').innerHTML =
-                       Math.round(event.accelerationIncludingGravity.y);
-               document.getElementById('acceleration-including-gravity-z').innerHTML =
-                       Math.round(event.accelerationIncludingGravity.z);
-
-               document.getElementById('rotation-rate-beta').innerHTML = Math.round(event.rotationRate.beta);
-               document.getElementById('rotation-rate-gamma').innerHTML = Math.round(event.rotationRate.gamma);
-               document.getElementById('rotation-rate-alpha').innerHTML = Math.round(event.rotationRate.alpha);
-
-               document.getElementById('interval').innerHTML = event.interval;
-            });
-         }
-
-         if (!('oncompassneedscalibration' in window)) {
-            document.getElementById('cnc-unsupported').classList.remove('hidden');
-         } else {
-            window.addEventListener('compassneedscalibration', function(event) {
-               alert('Compass needs calibrating! Wave your device in a figure-eight motion');
             });
          }
       </script>
