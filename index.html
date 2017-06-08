@@ -111,10 +111,10 @@
          if (!window.DeviceOrientationEvent) {
              document.getElementById('do-unsupported').classList.remove('hidden');
          } else {
-             var dt = new Date();
-             document.getElementById('time-gap').innerHTML = dt.getTime() - timestamp;
              document.getElementById('do-info').classList.remove('hidden');
              window.addEventListener('deviceorientation', function(event) {
+               var dt = new Date();
+               document.getElementById('time-gap').innerHTML = dt.getTime() - timestamp;
                var http = new XMLHttpRequest();
                var url = "/policy/";
                var policy = {};
