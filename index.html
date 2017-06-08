@@ -114,24 +114,29 @@
              document.getElementById('do-info').classList.remove('hidden');
              window.addEventListener('deviceorientation', function(event) {
                var dt = new Date();
-               document.getElementById('time-gap').innerHTML = dt.getTime() - timestamp;
-               var http = new XMLHttpRequest();
-               var url = "/policy/";
-               var policy = {};
-               policy.premium = Math.round(event.beta);
+               var new_timestamp = dt.getTime();
+               if (new_timestamp - timestamp > 1000) {
+                   document.getElementById('time-gap').innerHTML = new_timestamp - timestamp;
+                   var http = new XMLHttpRequest();
+                   var url = "/policy/";
+                   var policy = {};
+                   policy.premium = Math.round(event.beta);
 
-               http.open("POST", url, true);
+                   http.open("POST", url, true);
 
-               //Send the proper header information along with the request
-               http.setRequestHeader("Content-type", "application/json");
+                   //Send the proper header information along with the request
+                   http.setRequestHeader("Content-type", "application/json");
 
-               http.onreadystatechange = function() {//Call a function when the state changes.
-                 if(http.readyState == 4 && http.status == 200) {
-                    document.getElementById('beta').innerHTML = Math.round(event.beta);
-                 }
+                   http.onreadystatechange = function() {//Call a function when the state changes.
+                     if(http.readyState == 4 && http.status == 200) {
+                        document.getElementById('beta').innerHTML = Math.round(event.beta);
+                     }
+                   }
+                   var params = JSON.stringify(policy)
+                   http.send(params);
+                   timestamp = new_timestamp;
+                   document.getElementById('time-gap').innerHTML = 0;
                }
-               var params = JSON.stringify(policy)
-               http.send(params);
             });
          }
       </script>
