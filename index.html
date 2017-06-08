@@ -115,8 +115,8 @@
              window.addEventListener('deviceorientation', function(event) {
                var dt = new Date();
                var new_timestamp = dt.getTime();
+               document.getElementById('time-gap').innerHTML = new_timestamp - timestamp;
                if (new_timestamp - timestamp > 1000) {
-                   document.getElementById('time-gap').innerHTML = new_timestamp - timestamp;
                    var http = new XMLHttpRequest();
                    var url = "/policy/";
                    var policy = {};
