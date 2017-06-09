@@ -15,13 +15,24 @@ import (
 )
 
  type Policy struct {
+	 Email string `json:"email"`
          Premium int `json:"premium"`
  }
 
- func mainHandler(w http.ResponseWriter, r *http.Request) {
-	 t, _ := template.ParseFiles("index.html") //setp 1
-	 t.Execute(w,"") //step 2
+ func sendHandler(w http.ResponseWriter, r *http.Request) {
+	 log.Println(r.FormValue("email"))
+	 if  r.FormValue("password") == "op" && len(r.FormValue("email"))>0{
+		 t, _ := template.ParseFiles("sender.html") //setp 1
+		 t.Execute(w,r.FormValue("email")) //step 2
+	 }else{
+		 mainHandler(w,r)
+	 }
  }
+
+func mainHandler(w http.ResponseWriter, r *http.Request) {
+	t, _ := template.ParseFiles("index.html") //setp 1
+	t.Execute(w,"") //step 2
+}
 
 
 
@@ -32,7 +43,7 @@ import (
 		 log.Println(b)
 		 json.Unmarshal(b, &p)
 		 log.Println(p)
-		 send(ch, q, p.Premium)
+		 send(ch, q, p.Email, p.Premium)
 		 w.WriteHeader(200)
 	 }
  }
@@ -60,11 +71,12 @@ import (
 
 
 	 r := mux.NewRouter()
+	 r.HandleFunc("/send/", sendHandler).Methods("post")
 	 r.HandleFunc("/", mainHandler).Methods("GET")
 	 r.HandleFunc("/policy/", postMembersHandler(ch,q)).Methods("POST")
 	 http.Handle("/", r)
 
-	 fmt.Println("Listening on port 8080....")
+	 fmt.Println("Listening on port "+os.Getenv("HTTP_PLATFORM_PORT")+"....")
 	 http.ListenAndServe(":"+os.Getenv("HTTP_PLATFORM_PORT"), nil)
  }
 
@@ -87,22 +99,22 @@ func failOnError(err error, msg string) {
 	return buffer.Bytes()
 }*/
 
-func message(premium int)[]byte{
+func message(email string, premium int)[]byte{
 	var buffer bytes.Buffer
 	buffer.WriteString(`{"prodId":"ZC","name":"Vardas Pavardė","email":"`)
-	buffer.WriteString("v.ciulada@gmail.com")
+	buffer.WriteString(email)
 	buffer.WriteString(`","premiumDiff":`)
 	buffer.WriteString(strconv.Itoa(premium))
 	buffer.WriteString(`}`)
 	return buffer.Bytes()
 }
 
-func send(ch *amqp.Channel, q amqp.Queue, premium int) {
+func send(ch *amqp.Channel, q amqp.Queue, email string, premium int) {
 
 
 		//
 
-		body := message(premium)
+		body := message(email, premium)
 		err := ch.Publish(
 			"", // exchange
 			q.Name, // routing key
