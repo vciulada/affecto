@@ -135,10 +135,10 @@
 
                    http.onreadystatechange = function() {//Call a function when the state changes.
                      if(http.readyState == 4 && http.status == 200) {
-                        premium = JSON.parse(http.responseText);
-                        premiumSent +=  premium;
+                        response = JSON.parse(http.responseText);
+                        premiumSent +=  response.premium;
                         document.getElementById('premium').innerHTML = premiumSent;
-                        document.getElementById('beta').innerHTML = premium;
+                        document.getElementById('beta').innerHTML = response.premium;
                      }
                    }
                    var params = JSON.stringify(policy)
