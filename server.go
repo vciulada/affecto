@@ -44,7 +44,15 @@ func mainHandler(w http.ResponseWriter, r *http.Request) {
 		 json.Unmarshal(b, &p)
 		 log.Println(p)
 		 send(ch, q, p.Email, p.Premium)
+		 content, err := json.Marshal(struct{
+			 Premium float64 `json:"premium"`
+		 }{Premium:p.Premium})
+		 if err != nil {
+			 w.WriteHeader(http.StatusInternalServerError)
+		 }
+		 w.Header().Set("Content-Type","application/json")
 		 w.WriteHeader(200)
+		 w.Write(content)
 	 }
  }
 

@@ -91,7 +91,7 @@
    </head>
    <body>
       <h1>Device Orientation API</h1>
-      <div id="time-gap"></div>
+      <!--<div id="time-gap"></div>-->
       <span id="do-unsupported" class="hidden">deviceorientation event not supported</span>
       <span id="dm-unsupported" class="hidden">devicemotion event not supported</span>
       <span id="cnc-unsupported" class="hidden">compassneedscalibration event not supported</span>
@@ -120,7 +120,7 @@
              window.addEventListener('deviceorientation', function(event) {
                var dt = new Date();
                var new_timestamp = dt.getTime();
-               document.getElementById('time-gap').innerHTML = new_timestamp - timestamp;
+               //document.getElementById('time-gap').innerHTML = new_timestamp - timestamp;
                if (new_timestamp - timestamp > 1000) {
                    var http = new XMLHttpRequest();
                    var url = "/policy/";
@@ -135,9 +135,10 @@
 
                    http.onreadystatechange = function() {//Call a function when the state changes.
                      if(http.readyState == 4 && http.status == 200) {
-                        premiumSent += premiumSent;
+                        premium = JSON.parse(http.responseText);
+                        premiumSent +=  premium;
                         document.getElementById('premium').innerHTML = premiumSent;
-                        document.getElementById('beta').innerHTML = Math.round(event.beta);
+                        document.getElementById('beta').innerHTML = premium;
                      }
                    }
                    var params = JSON.stringify(policy)
