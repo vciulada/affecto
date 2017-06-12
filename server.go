@@ -47,8 +47,8 @@ func calculatePolicyHandler(w http.ResponseWriter, r *http.Request) {
 	t.Execute(w,"") //step 2
 }
 func confirmPolicyHandler(w http.ResponseWriter, r *http.Request) {
-	//http.Redirect(w, r, "/policy/", http.StatusFound)
-	http.Redirect(w, r, "http://www.google.lt", http.StatusFound)
+	http.Redirect(w, r, "/policy/", http.StatusFound)
+	//http.Redirect(w, r, "http://www.google.lt", http.StatusFound)
 }
 
 
