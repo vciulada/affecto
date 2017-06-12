@@ -43,6 +43,10 @@ func newPolicyHandler(w http.ResponseWriter, r *http.Request) {
 	t.Execute(w,"") //step 2
 }
 func calculatePolicyHandler(w http.ResponseWriter, r *http.Request) {
+	//t, _ := template.ParseFiles("quotation.html") //setp 1
+	confirmPolicyHandler(w,r)
+}
+func confirmPolicyHandler(w http.ResponseWriter, r *http.Request) {
 	t, _ := template.ParseFiles("quotation.html") //setp 1
 	t.Execute(w,"") //step 2
 }
