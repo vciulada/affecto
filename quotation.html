@@ -32,6 +32,9 @@
         body {
           padding-top: 70px;
         }
+        .info {
+          text-align: center;
+        }
     </style>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -52,11 +55,15 @@
       </div>
     </nav>
     <div class="container">
-      <nav class="footer">
-        <a class="btn btn-primary" href="/policy/new/">Issue Policy</a>
-      </nav>
+      <h2 class="info">The calclated premium for quote is:</h2>
+      <h1 class="info">2109.88 EUR</h1>
+      <h4 class="info">the premium as well as the quote will be valid until 2017-07-12</h4>
     </div>
-
+    <nav class="footer">
+      <form action="/policy/new/confirm/" method="POST">
+        <button type="submit" class="btn btn-primary">Issue Policy</button>
+      </form>
+    </nav>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

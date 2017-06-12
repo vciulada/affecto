@@ -43,12 +43,11 @@ func newPolicyHandler(w http.ResponseWriter, r *http.Request) {
 	t.Execute(w,"") //step 2
 }
 func calculatePolicyHandler(w http.ResponseWriter, r *http.Request) {
-	//t, _ := template.ParseFiles("quotation.html") //setp 1
-	confirmPolicyHandler(w,r)
-}
-func confirmPolicyHandler(w http.ResponseWriter, r *http.Request) {
 	t, _ := template.ParseFiles("quotation.html") //setp 1
 	t.Execute(w,"") //step 2
+}
+func confirmPolicyHandler(w http.ResponseWriter, r *http.Request) {
+	http.Redirect(w, r, "/policy/", http.StatusFound)
 }
 
 
@@ -101,7 +100,7 @@ func confirmPolicyHandler(w http.ResponseWriter, r *http.Request) {
 	 r.HandleFunc("/policy/", policyHandler).Methods("GET")
 	 r.HandleFunc("/policy/new/", newPolicyHandler).Methods("GET")
 	 r.HandleFunc("/policy/new/", calculatePolicyHandler).Methods("POST")
-	 r.HandleFunc("/policy/new/confirm/", confirmPolicyHandler).Methods("GET")
+	 r.HandleFunc("/policy/new/confirm/", confirmPolicyHandler).Methods("POST")
 	 r.HandleFunc("/policy/", postMembersHandler(ch,q)).Methods("POST")
 	 r.PathPrefix("/").Handler(http.FileServer(http.Dir("./public/")))
 	 http.Handle("/", r)
