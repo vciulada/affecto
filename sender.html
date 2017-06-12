@@ -3,8 +3,8 @@
    <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-      <meta name="author" content="Aurelio De Rosa">
-      <title>Device Orientation API Demo by Aurelio De Rosa</title>
+      <meta name="author" content="Vilius Čiulada">
+      <title>Insurance Day demo</title>
       <style>
          *
          {
@@ -98,8 +98,12 @@
 
       <div id="do-results">
          <div id="do-info" class="hidden">
+           <p>
+              Premium Total:
+              (<span id="premium" class="value">null</span>)
+           </p>
             <p>
-               Coordinates:
+               Premium:
                (<span id="beta" class="value">null</span>)
             </p>
          </div>
@@ -108,6 +112,7 @@
       <script>
          var d = new Date();
          var timestamp = d.getTime();
+         var premiumSent = 0;
          if (!window.DeviceOrientationEvent) {
              document.getElementById('do-unsupported').classList.remove('hidden');
          } else {
@@ -130,6 +135,8 @@
 
                    http.onreadystatechange = function() {//Call a function when the state changes.
                      if(http.readyState == 4 && http.status == 200) {
+                        premiumSent += premiumSent;
+                        document.getElementById('premium').innerHTML = premiumSent;
                         document.getElementById('beta').innerHTML = Math.round(event.beta);
                      }
                    }
