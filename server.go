@@ -34,6 +34,11 @@ func mainHandler(w http.ResponseWriter, r *http.Request) {
 	t.Execute(w,"") //step 2
 }
 
+func policyHandler(w http.ResponseWriter, r *http.Request) {
+	t, _ := template.ParseFiles("policy.html") //setp 1
+	t.Execute(w,"") //step 2
+}
+
 
 
  func postMembersHandler(ch *amqp.Channel, q amqp.Queue) func(w http.ResponseWriter, r *http.Request) {
@@ -81,6 +86,7 @@ func mainHandler(w http.ResponseWriter, r *http.Request) {
 	 r := mux.NewRouter()
 	 r.HandleFunc("/send/", sendHandler).Methods("post")
 	 r.HandleFunc("/", mainHandler).Methods("GET")
+	 r.HandleFunc("/policy/", policyHandler).Methods("GET")
 	 r.HandleFunc("/policy/", postMembersHandler(ch,q)).Methods("POST")
 	 http.Handle("/", r)
 
