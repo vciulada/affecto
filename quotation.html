@@ -56,11 +56,15 @@
     </nav>
     <div class="container">
       <h2 class="info">The calclated premium for quote is:</h2>
-      <h1 class="info">2109.88 EUR</h1>
-      <h4 class="info">the premium as well as the quote will be valid until 2017-07-12</h4>
+      <h1 class="info">{{.Premium}} EUR</h1>
+      <h4 class="info">the premium as well as the quote will be valid until {{.QuoteExpiry}}</h4>
     </div>
     <nav class="footer">
       <form action="/policy/new/confirm/" method="POST">
+        <input type="hidden" name="car_type" value="{{.CarType}}">
+        <input type="hidden" name="license_plate" value="{{.LicensePlate}}">
+        <input type="hidden" name="vin" value="{{.Vin}}">
+        <input type="hidden" name="start_date" value="{{.StartDate}}">
         <button type="submit" class="btn btn-primary">Issue Policy</button>
       </form>
     </nav>

@@ -55,13 +55,13 @@
       <form action="/policy/new/" method="POST">
         <div class="form-group">
           <label for="car_type">Car Type</label>
-          <select class="form-control" id="car_type">
-            <option selected>Select Car Model</option>
-            <option value="1">Alfa Romeo 145 1,4</option>
-            <option value="2">Audi A4 30 V6</option>
-            <option value="3">BMW 525i</option>
-            <option value="4">Toyota Corolla 2,0</option>
-            <option value="5">Volkswagen Golf GTI</option>
+          <select class="form-control" id="car_type" name="car_type">
+            <option value="" selected>Select Car Model</option>
+            <option value="1000702701">Alfa Romeo 145 1,4</option>
+            <option value="1001502142">Audi A4 30 V6</option>
+            <option value="1002604802">BMW 525i</option>
+            <option value="1026500525">Toyota Corolla 2,0</option>
+            <option value="1027901004">Volkswagen Golf GTI</option>
           </select>
         </div>
         <div class="form-group">
@@ -75,6 +75,7 @@
         <div class="form-group">
           <label class="control-label">Start Date</label>
             <p class="form-control-static">2017-06-13</p>
+            <input type="hidden" id="start_date" name="start_date" value="2017-06-13">
         </div>
         <div class="form-group">
           <div class="col-xs-offset-9">
