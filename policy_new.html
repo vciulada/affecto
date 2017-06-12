@@ -10,10 +10,30 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <style>
-      body {
-        padding-top: 70px;
+      .active{
+        color:green;
+        font-weight:bold;
       }
+      .footer {
+        position: fixed;
+        bottom: 20px; /* negative value of footer height */
+        right: 20px; /* negative value of footer height */
+      }
+      .btn-circle {
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        padding: 6px 0;
+        font-size: 12px;
+        line-height: 1.42;
+        border-radius: 15px;
+        background-color: red;
+        }
+        body {
+          padding-top: 70px;
+        }
     </style>
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -32,21 +52,33 @@
       </div>
     </nav>
     <div class="container">
-      <form action="/send/" method="POST">
+      <form action="/policy/new/" method="POST">
         <div class="form-group">
-          <label for="email">Email</label>
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Email" aria-describedby="email" id="email" name="email">
-            <span class="input-group-addon">@affecto.com</span>
-          </div>
+          <label for="car_type">Car Type</label>
+          <select class="form-control" id="car_type">
+            <option selected>Select Car Model</option>
+            <option value="1">Alfa Romeo 145 1,4</option>
+            <option value="2">Audi A4 30 V6</option>
+            <option value="3">BMW 525i</option>
+            <option value="4">Toyota Corolla 2,0</option>
+            <option value="5">Volkswagen Golf GTI</option>
+          </select>
         </div>
         <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+          <label for="license_plate">License plate</label>
+          <input type="text" class="form-control" id="license_plate" placeholder="License plate" name="license_plate">
+        </div>
+        <div class="form-group">
+          <label for="vin">VIN</label>
+          <input type="text" class="form-control" id="vin" placeholder="VIN" name="vin">
+        </div>
+        <div class="form-group">
+          <label class="control-label">Start Date</label>
+            <p class="form-control-static">2017-06-13</p>
         </div>
         <div class="form-group">
           <div class="col-xs-offset-10 col-xs-2">
-            <button type="submit" class="btn btn-default">Log in</button>
+            <button type="submit" class="btn btn-default">Calculate</button>
           </div>
         </div>
       </form>

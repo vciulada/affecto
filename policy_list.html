@@ -16,8 +16,8 @@
       }
       .footer {
         position: fixed;
-        bottom: 50px; /* negative value of footer height */
-        right: 50px; /* negative value of footer height */
+        bottom: 20px; /* negative value of footer height */
+        right: 20px; /* negative value of footer height */
       }
       .btn-circle {
         width: 30px;
@@ -29,6 +29,9 @@
         border-radius: 15px;
         background-color: red;
         }
+        body {
+          padding-top: 70px;
+        }
     </style>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -39,6 +42,15 @@
     <![endif]-->
   </head>
   <body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">
+            <img alt="Brand" src="/img/Affecto_logo.png" width="97" height="23">
+          </a>
+        </div>
+      </div>
+    </nav>
     <div class="container">
       <div class="row">
           <div class="col-xs-6 col-md-3">Motor</div>
@@ -118,7 +130,7 @@
       </div>
       <hr>
       <nav class="footer">
-        <button type="button" class="btn btn-primary">New Policy</button>
+        <a class="btn btn-primary" href="/policy/new/">New Policy</a>
       </nav>
     </div>
 
